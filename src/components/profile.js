@@ -6,9 +6,9 @@ const Profile = () => {
     const [error, setError] = useState()
     const {currentUser, signout} = useAuth()
     const navigate = useNavigate()
-    const handleSignout = () => {
+    const handleSignout = async () => {
         try {
-            signout()
+            await signout()
             navigate("/home")
         } catch(e) {
             setError(e.message)
@@ -24,7 +24,7 @@ const Profile = () => {
             }
             <button className="btn btn-danger"
                     onClick={handleSignout}>
-                Signout
+                Sign Out
             </button>
 
             <div>

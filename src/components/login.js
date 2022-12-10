@@ -14,7 +14,7 @@ const Login = () => {
         try {
             setError("")
             await login(emailRef.current.value, passwordRef.current.value)
-            navigate("/home")
+            navigate("/profile")
         } catch(error) {
             setError(error.message)
         }
@@ -35,6 +35,7 @@ const Login = () => {
                 Login</button>
             <h4>Logged in as : {currentUser?.email}</h4>
             <div>
+            <span>Don't have a account? </span>
                 <Link to="/signup">Sign Up</Link>
             </div>
         </div>

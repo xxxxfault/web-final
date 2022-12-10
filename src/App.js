@@ -2,25 +2,42 @@ import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Signup from "./components/signup";
 import Login from "./components/login";
 import Home from "./components/home";
-
+import Search from "./components/search"
 import {AuthProvider} from "./contexts/auth-context";
-import Nav from "./components/nav";
+import NavHead from "./components/nav";
 import Staff from "./components/staff";
 import Profile from "./components/profile";
+import ProtectedRoute from "./components/protected-route";
+import Order from "./components/my-order";
+import ProductDetail from "./components/product-detail";
 
 function App() {
   return (
-      <div className="container">
-
+      <div className="container mb-4">
         <BrowserRouter>
             <AuthProvider>
-                <Nav/>
+                <NavHead/>
             <Routes>
-                <Route path="/staff" element={<Staff/>}/>
+                <Route path="/staff" element={
+                    <ProtectedRoute>
+                    <Staff/>
+                    </ProtectedRoute>}/>
               <Route path="/signup" element={<Signup/>}/>
+                <Route path="/search" element={<Search/>}/>
               <Route path="/login" element={<Login/>}/>
                 <Route path="/home" element={<Home/>}/>
-                <Route path="/profile" element={<Profile/>}/>
+                <Route path="/detail" element={<ProductDetail/>}/>
+                <Route path="/profile" element={
+                    <ProtectedRoute>
+                    <Profile/>
+                    </ProtectedRoute>
+                }/>
+                <Route path="/myorder" element={
+                    <ProtectedRoute>
+                        <Order/>
+                    </ProtectedRoute>
+                }/>
+
           </Routes>
             </AuthProvider>
         </BrowserRouter>

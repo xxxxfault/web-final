@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import {useAuth} from "../contexts/auth-context";
 import {useEffect, useState} from "react";
 import {collection, getDocs} from "firebase/firestore";
@@ -10,6 +10,7 @@ import {Button} from "react-bootstrap";
 
 function NavHead() {
     const [staffs, setStaffs] = useState([]);
+    const location = useLocation();
 
     const staffsCollectionRef = collection(db, "admin");
 
@@ -29,7 +30,7 @@ function NavHead() {
                 <Navbar bg="light" variant="light" expand="lg">
                     <Navbar.Brand className="d-inline-block align-top" href="/">Online Order</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                        <Nav className="m-lg-1">
+                        <Nav  activeKey={location.pathname} className="mr-auto">
 
                             <Nav.Link href="/">Home</Nav.Link>
                             <Nav.Link href="/login">Login</Nav.Link>

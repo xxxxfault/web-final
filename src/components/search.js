@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {Input}  from 'semantic-ui-react'
-import {Card, Col, Row} from "react-bootstrap";
-import {Route, Routes} from "react-router-dom";
+import {Button, Card, Col, Row} from "react-bootstrap";
+import {Link, Route, Routes} from "react-router-dom";
 import ProductDetail from "./product-detail";
 export default function Search() {
     const [APIData, setAPIData] = useState([])
@@ -43,10 +43,11 @@ export default function Search() {
                                 <Card className="mt-2 text-center"  style={{ width: '18rem' }}>
                                     <Card.Title className="mt-2 mb-0">{product.strDrink}</Card.Title>
                                     <Card.Img src={product.strDrinkThumb} variant="top" />
-                                    <Routes>
-                                        <Route path="/detail"
-                                               element={<ProductDetail id={product.idDrink}/>}/>
-                                    </Routes>
+                                    <Link to={`/detail/${product.idDrink}`} >
+                                        <Button >
+                                            See Detail
+                                        </Button>
+                                    </Link>
 
                                 </Card>
                             </Col>
@@ -58,8 +59,14 @@ export default function Search() {
                             <Col xs={12} md={6} lg={4} >
                                 <Card className="mt-2 text-center"  style={{ width: '18rem' }}>
                                     <Card.Title className="mt-2 mb-0">{product.strDrink}</Card.Title>
-                                    <Card.Img src={product.strDrinkThumb} variant="top" />
+                                    <Card.Img src={product.strDrinkThumb} variant="top"/>
+                                    <Link to={`/detail/${product.idDrink}`} >
+                                        <Button className="m-2">
+                                            See Detail
+                                        </Button>
+                                    </Link>
                                 </Card>
+
                             </Col>
                         )
                     })

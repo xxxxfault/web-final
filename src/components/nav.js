@@ -9,9 +9,6 @@ import Navbar from 'react-bootstrap/Navbar';
 import {Button} from "react-bootstrap";
 
 function NavHead() {
-    const [ifAdmin, setIfAdmin] = useState(true);
-    // const currentUser = useAuth();
-    //
     const [staffs, setStaffs] = useState([]);
 
     const staffsCollectionRef = collection(db, "admin");
@@ -25,34 +22,23 @@ function NavHead() {
         return () => { getStaffs()};
     }, []);
 
-    // const adminEmail=Array.from(staffs,(staff)=>(staff.email));
-    // console.log(adminEmail)
-    // // const ifAdmin=adminEmail.some(currentUser?.email);
-    //
-    // adminEmail?.forEach(email =>{
-    //     if(email==currentUser?.email) {
-    //     setIfAdmin(true);}
-    //  }
-    // )
-    // console.log(ifAdmin);
-    // console.log(currentUser);
-
-
 
     return (
 
         <>
                 <Navbar bg="light" variant="light" expand="lg">
-                    <Navbar.Brand className="d-inline-block align-top" href="home">Online Order</Navbar.Brand>
+                    <Navbar.Brand className="d-inline-block align-top" href="/">Online Order</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Nav className="m-lg-1">
-                           <Nav.Link href="staff">Staff</Nav.Link>
-                            <Nav.Link href="home">Menu</Nav.Link>
-                            <Nav.Link href="login">Login</Nav.Link>
-                            <Nav.Link href="signup">Sign up</Nav.Link>
-                            <Nav.Link href="profile">Profile</Nav.Link>
-                            <Nav.Link href="myorder">Order</Nav.Link>
-                            <Nav.Link href="search">Search</Nav.Link>
+
+                            <Nav.Link href="/">Home</Nav.Link>
+                            <Nav.Link href="/login">Login</Nav.Link>
+                            <Nav.Link href="/signup">Sign up</Nav.Link>
+                            <Nav.Link href="/profile">Profile</Nav.Link>
+                            <Nav.Link href="/myorder">Order</Nav.Link>
+                            <Nav.Link href="/favourite">Favourite</Nav.Link>
+                            <Nav.Link href="/search">Search</Nav.Link>
+                            <Nav.Link href="/staff">Staff</Nav.Link>
                         </Nav>
             </Navbar>
         </>

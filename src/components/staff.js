@@ -18,7 +18,7 @@ const Staff = () => {
     console.log(currentUser.email)
 
     if (!currentUser.email || currentUser.email !== 'admin@gmail.com') {
-        navigate("/home")
+        navigate("/")
     }
 
     useEffect(() => {
@@ -85,11 +85,11 @@ const Staff = () => {
             {staffs?.map((staff) => (
                 <tr>
                     <td>
-                        Name: {staff.name}
+                        {staff.name}
                     </td>
-                <td>  Email: {staff.email} </td>
-                 <td>Age: {staff.age}</td>
-                <td>Phone: {staff.phone}</td>
+                <td>   {staff.email} </td>
+                 <td> {staff.age}</td>
+                <td>{staff.phone}</td>
                     <td><Button onClick={() => updateStaff(staff.id, staff.age)} variant="info">Increase Age</Button>  </td>
                         <td><Button onClick={() => deleteStaff(staff.id)} variant="secondary"> Delete Staff</Button>  </td>
                 </tr>

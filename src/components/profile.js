@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Link, useNavigate} from "react-router-dom";
 import {useAuth} from "../contexts/auth-context";
+import {Button} from "react-bootstrap";
 
 const Profile = () => {
     const [error, setError] = useState()
@@ -9,7 +10,7 @@ const Profile = () => {
     const handleSignout = async () => {
         try {
             await signout()
-            navigate("/home")
+            navigate("/")
         } catch(e) {
             setError(e.message)
         }
@@ -22,17 +23,28 @@ const Profile = () => {
                     {error}
                 </div>
             }
-            <button className="btn btn-danger"
-                    onClick={handleSignout}>
-                Sign Out
-            </button>
+            <br/>
 
             <div>
-            {currentUser?.email}
+                <h4>My Email: {currentUser?.email}</h4>
+
             </div>
-            <pre>
-        {JSON.stringify(currentUser, null , 2)}
-      </pre>
+            <Link to={`/myorder`} >
+                <Button className="mt-2" >
+                    See Order
+                </Button>
+            </Link>
+            <br/>
+            <Link to={`/favourite`} >
+                <Button className="mt-2" >
+                    See My Favourite
+                </Button>
+            </Link>
+<br/>
+            <Button className="btn btn-danger mt-2"
+                    onClick={handleSignout}>
+                Sign Out
+            </Button>
         </div>
     );
 };

@@ -6,7 +6,7 @@ import {
     collection, deleteDoc, doc, onSnapshot
 } from "firebase/firestore";
 import {useAuth} from "../contexts/auth-context";
-import {Button, Col, Row} from "react-bootstrap";
+import {Button, Col, Row, Table} from "react-bootstrap";
 
 const Order = () => {
     const {currentUser} = useAuth();
@@ -55,32 +55,48 @@ const staff = staffs.filter((staff)=>staff.email===currentUser.email)
     return (
         <div >
             <h1>Orders</h1>
-            <Row className="mt-2">
-                <Col className="fw-bold ">
 
-            <input placeholder="New Order" onChange={(event) => {
-                setNewOrder(event.target.value)
-            }}/>
-                </Col>
+            <Table striped>
+                <thead>
+                <tr>
+                    <th>Order Detail</th>
+                    <th>Order By</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr >
+                    <td>
+                    <input placeholder="New Order" onChange={(event) => {
+                        setNewOrder(event.target.value)
+                    }}/>
+                    </td>
+                    <td>
+                        {currentUser.email}
+                        </td>
+                    <td>
+                        <Button onClick={createOrder}>Add New Order</Button>
+                    </td>
+                </tr>
 
-                <Col>
-            <Button className="m-lg-2" onClick={createOrder}>Add New Order</Button>
-            </Col>
-            </Row>
-            <h3>Orders History</h3>
+
                 {orders?.map((order) => (
-
-                    <Row className="mt-2">
-                        <Col className="fw-bold">
-                            Order Detail: {order.detail}
-                        </Col>
-                        <Col>
+                    <tr >
+                        <td>
+                             {order.detail}
+                        </td>
+                        <td>
+                             {order.email}
+                        </td>
+                        <td>
                             <Button  variant="secondary "
                                      onClick={()=> deleteOrder(order.id)}>Delete Order</Button>
-                        </Col>
-                    </Row>
+                        </td>
+                    </tr>
 
                 ))}
+
+                </tbody>
+                </Table>
         </div>
     )
 }

@@ -22,16 +22,12 @@ function NavHead() {
         };
         return () => { getStaffs()};
     }, []);
-
-
     return (
-
         <>
                 <Navbar bg="light" variant="light" expand="lg">
                     <Navbar.Brand className="d-inline-block align-top" href="/">Online Order</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Nav  activeKey={location.pathname} className="mr-auto">
-
                             <Nav.Link href="/">Home</Nav.Link>
                             <Nav.Link href="/login">Login</Nav.Link>
                             <Nav.Link href="/signup">Sign up</Nav.Link>
@@ -43,7 +39,6 @@ function NavHead() {
                         </Nav>
             </Navbar>
         </>
-
 
     );
 }
